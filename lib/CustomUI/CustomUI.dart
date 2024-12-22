@@ -1,7 +1,9 @@
+import 'package:chatbot/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 
 class CustomUI extends StatefulWidget {
-  const CustomUI({super.key});
+  const CustomUI({super.key,required this.chatModel});
+  final ChatModel chatModel;
 
   @override
   _CustomUIState createState() => _CustomUIState();

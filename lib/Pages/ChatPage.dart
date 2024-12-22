@@ -57,11 +57,11 @@ class _ChatpageState extends State<Chatpage> {
         onPressed: (){},
         child: Icon(Icons.chat,color:Colors.white,),
       ),
-      body: ListView(
-        children: [
-          CustomUI(),
-          CustomUI(),
-        ],
+      body: ListView.builder(
+        itemCount: chats.length,
+        itemBuilder:(context,index)=>CustomUI(
+          chatModel:chats[index],
+        ) ,
       ),
     );
   }
