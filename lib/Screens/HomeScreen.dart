@@ -1,3 +1,4 @@
+import 'package:chatbot/Pages/ChatPage.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -61,7 +62,7 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
           controller: _controller,
           children: [
             Text("camera"),
-            Text("chats"),
+            Chatpage(),
             Text("status"),
             Text("Calls"),
           ],
