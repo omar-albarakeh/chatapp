@@ -10,8 +10,13 @@ class Chatpage extends StatefulWidget {
 class _ChatpageState extends State<Chatpage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: theme.primaryColor,
+        onPressed: (){},
+        child: Icon(Icons.chat,color:Colors.white,),
+      ),
     );
   }
 }
