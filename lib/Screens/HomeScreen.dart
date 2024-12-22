@@ -8,6 +8,16 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+
+  late TabController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 3, vsync: this);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +27,7 @@ class _HomescreenState extends State<Homescreen> {
           IconButton(onPressed: (){}, icon: Icon(Icons.search)),
           IconButton(onPressed: (){}, icon: Icon(Icons.more_vert))
         ],
+        bottom: TabBar(tabs: tabs),
       ),
     );
   }
