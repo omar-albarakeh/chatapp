@@ -12,6 +12,7 @@ class _CustomuiState extends State<Customui> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
+        child: Icon(Icons.person,size: 30,),
         radius: 25,
       ),
       title: Text("omar barakeh",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
