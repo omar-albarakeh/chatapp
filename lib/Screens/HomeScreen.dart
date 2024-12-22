@@ -13,7 +13,7 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 4, vsync: this, initialIndex: 0);
+    _controller = TabController(length: 4, vsync: this, initialIndex: 1);
   }
 
   @override
@@ -40,7 +40,7 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
         ],
         bottom: TabBar(
           controller: _controller,
-          tabs: const [
+          tabs:[
             Tab(icon: Icon(Icons.camera_alt)),
             Tab(text: "CHATS"),
             Tab(text: "STATUS"),
@@ -48,7 +48,15 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
           ],
         ),
       ),
-      
+      body:TabBarView(
+          controller: _controller,
+          children: [
+            Text("camera"),
+            Text("chats"),
+            Text("status"),
+            Text("Calls"),
+          ],
+      ) ,
     );
   }
 }
