@@ -27,7 +27,15 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
           IconButton(onPressed: (){}, icon: Icon(Icons.search)),
           IconButton(onPressed: (){}, icon: Icon(Icons.more_vert))
         ],
-        bottom: TabBar(tabs: tabs),
+        bottom: TabBar(
+            controller:_controller,
+            tabs: [
+              Tab(icon:Icon(Icons.camera_alt)),
+              Tab(text: "CHATS",),
+              Tab(text: "CHATS",),
+              Tab(text: "CHATS",),
+
+            ]),
       ),
     );
   }
