@@ -20,9 +20,8 @@ class _ChatpageState extends State<Chatpage> {
       ),
       body: ListView(
         children: [
-          Customui(),
-          Customui(),
-
+          CustomUI(),
+          CustomUI(),
         ],
       ),
     );

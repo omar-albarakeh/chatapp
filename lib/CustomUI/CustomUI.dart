@@ -1,29 +1,53 @@
 import 'package:flutter/material.dart';
 
-class Customui extends StatefulWidget {
-  const Customui({super.key});
+class CustomUI extends StatefulWidget {
+  const CustomUI({super.key});
 
   @override
-  _CustomuiState createState() => _CustomuiState();
+  _CustomUIState createState() => _CustomUIState();
 }
 
-class _CustomuiState extends State<Customui> {
+class _CustomUIState extends State<CustomUI> {
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: CircleAvatar(
-        child: Icon(Icons.person,size: 30,),
-        radius: 25,
-      ),
-      title: Text("omar barakeh",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-      subtitle: Row(
+    return InkWell(
+      onTap: () {},
+      child: Column(
         children: [
-          Icon(Icons.done_all,size: 20,color: Colors.blue,),
-          SizedBox(width: 10,),
-          Text("hey omar",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
+          ListTile(
+            leading: CircleAvatar(
+              child: Icon(
+                Icons.person,
+                size: 30,
+              ),
+              radius: 35,
+            ),
+            title: Text(
+              "Omar Barakeh",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            subtitle: Row(
+              children: [
+                Icon(
+                  Icons.done_all,
+                  size: 20,
+                  color: Colors.blue,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  "Hey Omar",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            trailing: Text("11:11"),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Divider(thickness: 1),
+          ),
         ],
       ),
-      trailing: Text("11:11"),
     );
   }
 }
