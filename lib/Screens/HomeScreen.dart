@@ -32,7 +32,11 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
             icon: Icon(
                 Icons.search),
           ),
-          PopupMenuButton(itemBuilder: (BuildContext context){
+          PopupMenuButton(
+            onSelected: (value){
+              print(value);
+            },
+              itemBuilder: (BuildContext context){
             return [
               PopupMenuItem(child: Text("New group"),value: "New group",),
               PopupMenuItem(child: Text("New broadcast"),value: "New broadcast",),
