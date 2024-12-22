@@ -4,7 +4,7 @@ class Customui extends StatefulWidget {
   const Customui({super.key});
 
   @override
-  State<Customui> createState() => _CustomuiState();
+  _CustomuiState createState() => _CustomuiState();
 }
 
 class _CustomuiState extends State<Customui> {

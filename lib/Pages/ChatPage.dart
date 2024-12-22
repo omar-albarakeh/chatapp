@@ -1,3 +1,4 @@
+import 'package:chatbot/CustomUI/CustomUI.dart';
 import 'package:flutter/material.dart';
 
 class Chatpage extends StatefulWidget {
@@ -16,6 +17,11 @@ class _ChatpageState extends State<Chatpage> {
         backgroundColor: theme.primaryColor,
         onPressed: (){},
         child: Icon(Icons.chat,color:Colors.white,),
+      ),
+      body: ListView(
+        children: [
+          Customui(),
+        ],
       ),
     );
   }
