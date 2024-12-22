@@ -14,18 +14,19 @@ class _IndividualPageState extends State<IndividualPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // Back button with proper alignment
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Icon(Icons.arrow_back, size: 24),
-              SizedBox(width: 5),
             ],
           ),
         ),
+        // Title with avatar and name
         title: Row(
           children: [
             CircleAvatar(
@@ -34,14 +35,73 @@ class _IndividualPageState extends State<IndividualPage> {
                 size: 30,
               ),
             ),
-            SizedBox(width: 10),
-            Text(
-              widget.chatModel.name,
-              style: TextStyle(fontSize: 20, color: Colors.white),
+            const SizedBox(width: 8), // Spacing between avatar and text
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.chatModel.name,
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                const Text(
+                  "Online", // Status placeholder
+                  style: TextStyle(fontSize: 12, color: Colors.white70),
+                ),
+              ],
             ),
           ],
+        ),
+        // AppBar actions
+        actions: [
+          // Phone icon action
+          IconButton(
+            icon: const Icon(Icons.phone),
+            onPressed: () {
+              // Add phone call functionality here
+              print("Phone icon pressed");
+            },
+          ),
+          // Popup menu button
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              // Handle menu item actions
+              print(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem(
+                  child: Text("View Contact"),
+                  value: "View Contact",
+                ),
+                const PopupMenuItem(
+                  child: Text("Media"),
+                  value: "Media",
+                ),
+                const PopupMenuItem(
+                  child: Text("WhatsApp Web"),
+                  value: "WhatsApp Web",
+                ),
+                const PopupMenuItem(
+                  child: Text("Starred Messages"),
+                  value: "Starred Messages",
+                ),
+                const PopupMenuItem(
+                  child: Text("Settings"),
+                  value: "Settings",
+                ),
+              ];
+            },
+          ),
+        ],
+      ),
+      // Page body
+      body: Center(
+        child: Text(
+          "Chat Screen for ${widget.chatModel.name}", // Placeholder text
+          style: const TextStyle(fontSize: 18),
         ),
       ),
     );
   }
 }
+
