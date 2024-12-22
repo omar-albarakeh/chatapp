@@ -32,11 +32,16 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
             icon: Icon(
                 Icons.search),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-                Icons.more_vert),
-          ),
+          PopupMenuButton(itemBuilder: (BuildContext context){
+            return [
+              PopupMenuItem(child: Text("New group"),value: "New group",),
+              PopupMenuItem(child: Text("New broadcast"),value: "New broadcast",),
+              PopupMenuItem(child: Text("Whatsapp Web"),value: "Whatsapp Web",),
+              PopupMenuItem(child: Text("started messages"),value: "started messages",),
+              PopupMenuItem(child: Text("Settings"),value: "Settings",),
+
+            ];
+          })
         ],
         bottom: TabBar(
           controller: _controller,
