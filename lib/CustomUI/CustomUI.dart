@@ -1,4 +1,5 @@
 import 'package:chatbot/Model/ChatModel.dart';
+import 'package:chatbot/Pages/individualpage.dart';
 import 'package:flutter/material.dart';
 
 class CustomUI extends StatefulWidget {
@@ -14,7 +15,7 @@ class _CustomUIState extends State<CustomUI> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
+        Navigator.push(context,MaterialPageRoute(builder: (context)=> Individualpage()));
       },
       child: Column(
         children: [
