@@ -13,13 +13,15 @@ class _CustomUIState extends State<CustomUI> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+
+      },
       child: Column(
         children: [
           ListTile(
             leading: CircleAvatar(
               child: Icon(
-                Icons.person,
+                widget.chatModel.isGroup? Icons.people : Icons.person,
                 size: 30,
               ),
               radius: 35,
