@@ -1,18 +1,46 @@
+import 'package:chatbot/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 
-class Individualpage extends StatefulWidget {
-  const Individualpage({super.key});
+class IndividualPage extends StatefulWidget {
+  final ChatModel chatModel;
+  const IndividualPage({super.key, required this.chatModel});
 
   @override
-  State<Individualpage> createState() => _IndividualpageState();
+  State<IndividualPage> createState() => _IndividualPageState();
 }
 
-class _IndividualpageState extends State<Individualpage> {
+class _IndividualPageState extends State<IndividualPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("individualpage"),
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.arrow_back, size: 24),
+              SizedBox(width: 5),
+            ],
+          ),
+        ),
+        title: Row(
+          children: [
+            CircleAvatar(
+              child: Icon(
+                widget.chatModel.isGroup ? Icons.people : Icons.person,
+                size: 30,
+              ),
+            ),
+            SizedBox(width: 10),
+            Text(
+              widget.chatModel.name,
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }

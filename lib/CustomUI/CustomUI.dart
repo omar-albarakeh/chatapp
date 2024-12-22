@@ -15,14 +15,19 @@ class _CustomUIState extends State<CustomUI> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,MaterialPageRoute(builder: (context)=> Individualpage()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => IndividualPage(chatModel: widget.chatModel),
+          ),
+        );
       },
       child: Column(
         children: [
           ListTile(
             leading: CircleAvatar(
               child: Icon(
-                widget.chatModel.isGroup? Icons.people : Icons.person,
+                widget.chatModel.isGroup ? Icons.people : Icons.person,
                 size: 30,
               ),
               radius: 35,
