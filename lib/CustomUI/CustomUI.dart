@@ -2,7 +2,7 @@ import 'package:chatbot/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 
 class CustomUI extends StatefulWidget {
-  const CustomUI({super.key,required this.chatModel});
+  const CustomUI({super.key, required this.chatModel});
   final ChatModel chatModel;
 
   @override
@@ -25,7 +25,7 @@ class _CustomUIState extends State<CustomUI> {
               radius: 35,
             ),
             title: Text(
-              "Omar Barakeh",
+              widget.chatModel.name,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             subtitle: Row(
@@ -37,12 +37,12 @@ class _CustomUIState extends State<CustomUI> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  "Hey Omar",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  widget.chatModel.currentMessage,
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            trailing: Text("11:11"),
+            trailing: Text(widget.chatModel.time),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0),
