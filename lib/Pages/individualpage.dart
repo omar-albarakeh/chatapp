@@ -10,11 +10,29 @@ class IndividualPage extends StatefulWidget {
 }
 
 class _IndividualPageState extends State<IndividualPage> {
+  final TextEditingController _controller = TextEditingController();
+  final List<Map<String, String>> messages = [];
+
+  void _sendMessage() {
+    String message = _controller.text;
+    if (message.isNotEmpty) {
+      setState(() {
+        messages.add({"sender": "me", "message": message});
+      });
+      _controller.clear();
+
+      Future.delayed(const Duration(seconds: 1), () {
+        setState(() {
+          messages.add({"sender": "receiver", "message": "Received: $message"});
+        });
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Back button with proper alignment
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -26,7 +44,6 @@ class _IndividualPageState extends State<IndividualPage> {
             ],
           ),
         ),
-        // Title with avatar and name
         title: Row(
           children: [
             CircleAvatar(
@@ -35,7 +52,7 @@ class _IndividualPageState extends State<IndividualPage> {
                 size: 30,
               ),
             ),
-            const SizedBox(width: 8), // Spacing between avatar and text
+            const SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -44,27 +61,22 @@ class _IndividualPageState extends State<IndividualPage> {
                   style: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 const Text(
-                  "Online", // Status placeholder
+                  "Online",
                   style: TextStyle(fontSize: 12, color: Colors.white70),
                 ),
               ],
             ),
           ],
         ),
-        // AppBar actions
         actions: [
-          // Phone icon action
           IconButton(
             icon: const Icon(Icons.phone),
             onPressed: () {
-              // Add phone call functionality here
               print("Phone icon pressed");
             },
           ),
-          // Popup menu button
           PopupMenuButton<String>(
             onSelected: (value) {
-              // Handle menu item actions
               print(value);
             },
             itemBuilder: (BuildContext context) {
@@ -94,14 +106,96 @@ class _IndividualPageState extends State<IndividualPage> {
           ),
         ],
       ),
-      // Page body
-      body: Center(
-        child: Text(
-          "Chat Screen for ${widget.chatModel.name}", // Placeholder text
-          style: const TextStyle(fontSize: 18),
-        ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 80),
+            child: ListView.builder(
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                final message = messages[index];
+                final isSender = message["sender"] == "me";
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Align(
+                    alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                        color: isSender ? Colors.blueAccent : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        message["message"]!,
+                        style: TextStyle(
+                          color: isSender ? Colors.white : Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(
+                        hintText: "Type a message...",
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                        prefixIcon: const Icon(
+                          Icons.emoji_emotions,
+                          color: Colors.grey,
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none,
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.file_copy,
+                            color: Colors.grey, // Suffix icon color
+                          ),
+                        ),
+                        contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      ),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 5,
+                      minLines: 1,
+                    )
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.send,
+                      color: Colors.blue,
+                    ),
+                    onPressed: _sendMessage,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-

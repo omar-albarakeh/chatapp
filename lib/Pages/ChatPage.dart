@@ -23,7 +23,7 @@ class _ChatpageState extends State<Chatpage> {
       icon: "group_icon.png",
       isGroup: true,
       time: "9:15 AM",
-      currentMessage: "Today's topic: State Management",
+      currentMessage: "Today's topic: State",
     ),
     ChatModel(
       name: "Jane Smith",
